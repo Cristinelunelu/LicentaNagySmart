@@ -47,14 +47,14 @@ unsigned long lastHistoryUpdate = 0;
 unsigned long lastDoorCheck = 0;
 unsigned long barrierOpenTime = 0;
 unsigned long lastCardRead = 0;
-unsigned long lastScheduleCheck = 0;  // ADAUGĂ ACEASTĂ LINIE
+unsigned long lastScheduleCheck = 0;  
 const unsigned long envUpdateInterval = 10000;
 const unsigned long firebaseUpdateInterval = 1000;
 const unsigned long historyUpdateInterval = 300000;
 const unsigned long doorCheckInterval = 100;
 const unsigned long barrierAutoCloseTime = 15000; 
 const unsigned long cardReadDelay = 2000; 
-const unsigned long scheduleCheckInterval = 1000; // ADAUGĂ ACEASTĂ LINIE
+const unsigned long scheduleCheckInterval = 1000; 
 
 // Device states
 bool ledOn = false;
@@ -431,9 +431,9 @@ void handleBluetooth() {
       Firebase.RTDB.setString(&fbdo, "/lamp/status/state", "ON");
     } else if (cmd == "LAMP OFF") {
       Firebase.RTDB.setString(&fbdo, "/lamp/status/state", "OFF");
-    } else if (cmd == "PRIZA ON") {       // ADĂUGAT
+    } else if (cmd == "PRIZA ON") {       
       Firebase.RTDB.setString(&fbdo, "/priza/status/state", "ON");
-    } else if (cmd == "PRIZA OFF") {      // ADĂUGAT
+    } else if (cmd == "PRIZA OFF") {     
       Firebase.RTDB.setString(&fbdo, "/priza/status/state", "OFF");
     } else if (cmd == "BARRIER OPEN") {
       Firebase.RTDB.setString(&fbdo, "/barrier/status/state", "OPEN");
@@ -473,7 +473,7 @@ void sendStatus() {
   SerialBT.println("=== STATUS ===");
   SerialBT.println("LED: " + String(digitalRead(LED_PIN) ? "ON" : "OFF"));
   SerialBT.println("Lamp: " + String(digitalRead(LAMP_PIN) ? "ON" : "OFF"));
-  SerialBT.println("Priza: " + String(digitalRead(PRIZA_PIN) ? "ON" : "OFF"));  // ADĂUGAT
+  SerialBT.println("Priza: " + String(digitalRead(PRIZA_PIN) ? "ON" : "OFF"));  
   SerialBT.println("Motion: " + String(digitalRead(PIR_PIN) ? "YES" : "NO"));
   SerialBT.println("Door: " + String(doorOpen ? "OPEN" : "CLOSED"));
   SerialBT.println("RFID Mode: " + String(isRegistering ? "REGISTERING" : "WAITING"));
@@ -482,7 +482,7 @@ void sendStatus() {
   SerialBT.println("Humidity: " + String(h) + "%");
   SerialBT.println("LED Hours: " + String(totalLedHours, 2));
   SerialBT.println("Lamp Hours: " + String(totalLampHours, 2));
-  SerialBT.println("Priza Hours: " + String(totalPrizaHours, 2));  // ADĂUGAT
+  SerialBT.println("Priza Hours: " + String(totalPrizaHours, 2));  
   SerialBT.println("=============");
 }
 
